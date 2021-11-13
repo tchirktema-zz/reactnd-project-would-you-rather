@@ -2,15 +2,15 @@ import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from 'react-router';
 import { Grid, GridRow, GridColumn } from "semantic-ui-react";
-import MenuComponent from '../../Components/Menu/MenuComponent';
 import RatherBoardPage from "../RatherPage/RatherBoardPage";
 
 const HomePage = (props) => {
-    const {authUser,user} = props
+    const {authUser} = props
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(!authUser){
+      console.info("auther :", authUser)
+        if(authUser === null){
             navigate("/login",{replace: true})
         }
     })
@@ -19,7 +19,6 @@ const HomePage = (props) => {
         <Grid padded="vertically" columns={1} centered>
           <GridRow>
             <GridColumn style={{ maxWidth: 1000 }}>
-              <MenuComponent user={user} />
               <RatherBoardPage />
             </GridColumn>
           </GridRow>

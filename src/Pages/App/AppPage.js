@@ -3,7 +3,7 @@ import LoginPage from "../Login/LoginPage";
 import HomePage from "../HomePage/HomePage";
 import { handleInitialData } from "../../Actions/SharedAction";
 import { connect } from "react-redux";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import RatherPage from "../RatherPage/RatherPage";
 import NewRatherPage from "../NewRatherPage/NewRatherPage";
 import LeaderPage from "../RatherPage/LeaderPage";
@@ -11,6 +11,11 @@ import LeaderPage from "../RatherPage/LeaderPage";
 class AppPage extends Component {
   componentDidMount(){
     this.props.handleInitialData();
+
+    if(!this.props.authUser){
+      return <Navigate to="/login" />;
+    }
+
     
   }
   render(){

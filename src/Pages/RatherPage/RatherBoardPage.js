@@ -2,27 +2,33 @@ import React, { Component, Fragment } from 'react';
 import { Grid, Tab, GridRow, GridColumn } from "semantic-ui-react";
 import {connect} from 'react-redux'
 import UserCard  from '../../Components/LeadBoard/UserCard';
+import MenuComponent from '../../Components/Menu/MenuComponent';
 
 
 class RatherBoardPage extends Component {
 
   render(){
-    const { authUser, userQuestionData } = this.props;
+    const { authUser,user, userQuestionData } = this.props;
     
     return (
       <Fragment>
         {authUser !== null ? (
-          <Grid padded="vertically" columns={1} centered>
-          <GridRow>
-            <GridColumn style={{ maxWidth: 800 }}>
-              <Tab
-                menu={{ fluid: true, vertical: true, tabular: true }}
-                panes={panes(userQuestionData)}
-              />
-            </GridColumn>
-          </GridRow>
-        </Grid>
-        ):(<div></div>)}
+          <Fragment>
+            <MenuComponent user={user} />
+            <Grid padded="vertically" columns={1} centered>
+              <GridRow>
+                <GridColumn style={{ maxWidth: 800 }}>
+                  <Tab
+                    menu={{ fluid: true, vertical: true, tabular: true }}
+                    panes={panes(userQuestionData)}
+                  />
+                </GridColumn>
+              </GridRow>
+            </Grid>
+          </Fragment>
+        ) : (
+          <div></div>
+        )}
       </Fragment>
     );
   }
@@ -68,6 +74,7 @@ const panes = (props) => {
 function mapStateToProps({ authUser, questions, users }) {
 
   if(authUser){
+    const user = users[authUser]
     const answeredIds = Object.keys(users[authUser].answers);
 
     const answered = Object.values(questions)
@@ -81,6 +88,7 @@ function mapStateToProps({ authUser, questions, users }) {
 
     return {
       authUser,
+      user,
       userQuestionData: {
         answered,
         unanswered,
