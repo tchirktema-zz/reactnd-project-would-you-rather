@@ -16,10 +16,10 @@ const MenuComponent = (props) => {
   }
 
   useEffect(() => {
-    if(window.location.pathname === '/new'){
+    if(window.location.pathname === '/add'){
       setActiveItem('new')
     }
-    if(window.location.pathname === '/leader'){
+    if (window.location.pathname === "/leaderboard") {
       setActiveItem("leader");
     }
   }, [activeItem])
@@ -31,10 +31,10 @@ const MenuComponent = (props) => {
           <Link to="/">Home</Link>
         </Menu.Item>
         <Menu.Item name="new" active={activeItem === "new"}>
-          <Link to="/new">Add Rather</Link>
+          <Link to="/add">Add Rather</Link>
         </Menu.Item>
         <Menu.Item name="leader" active={activeItem === "leader"}>
-          <Link to="/leader">Leader Rather</Link>
+          <Link to="/leaderboard">Leader Rather</Link>
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item>
