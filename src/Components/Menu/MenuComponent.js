@@ -19,6 +19,9 @@ const MenuComponent = (props) => {
     if(window.location.pathname === '/add'){
       setActiveItem('new')
     }
+    if (window.location.pathname === "/home") {
+      setActiveItem("home");
+    }
     if (window.location.pathname === "/leaderboard") {
       setActiveItem("leader");
     }
@@ -28,7 +31,7 @@ const MenuComponent = (props) => {
     <div>
       <Menu pointing>
         <Menu.Item name="home" active={activeItem === "home"}>
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </Menu.Item>
         <Menu.Item name="new" active={activeItem === "new"}>
           <Link to="/add">Add Rather</Link>

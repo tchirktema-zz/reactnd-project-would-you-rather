@@ -22,8 +22,8 @@ class AppPage extends Component {
     return (
       <Fragment>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="login" element={<LoginPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/questions/:question_id" element={<RatherPage />} />
           <Route path="/add" element={<NewRatherPage />} />
           <Route path="/leaderboard" element={<LeaderPage />} />

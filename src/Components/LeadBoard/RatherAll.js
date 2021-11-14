@@ -37,7 +37,8 @@ const RatherAll = (props) => {
     });
 
     const handleClick = (e) => {
-        setViewRather((prevState) => !viewRather)
+      e.preventDefault()
+      setViewRather(!viewRather)
     };
     
     

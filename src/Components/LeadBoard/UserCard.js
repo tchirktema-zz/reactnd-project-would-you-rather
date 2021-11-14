@@ -30,7 +30,7 @@ class UserCard extends Component {
           attached="top"
           style={{ borderTop: borderTop }}
         >
-          {author.name} asks:
+          {question.author} asks:
         </Header>
 
         <Grid divided padded>
@@ -108,14 +108,20 @@ function mapStateToProps(
   } else {
    
     question = questions[match];
+
     author  = users[authUser];
+
+    console.info(" question :", question)
+    console.info(" author :", author);
+    
+
+
     if (question === undefined) {
 
     } else {
-      author = users[question.author];
+      author = users[authUser];
       ratherType = ratherTypes.RATHER_QUESTION;
-     
-      
+  
       if (Object.keys(author.answers).includes(question.id)) {
         ratherType = ratherTypes.RATHER_RESULT;
       }

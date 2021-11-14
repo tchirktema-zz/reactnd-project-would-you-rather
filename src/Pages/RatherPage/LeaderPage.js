@@ -12,7 +12,7 @@ const LeaderPage = (props) => {
 
     useEffect(() => {
       if (!authUser) {
-        navigate("/login", { replace: true });
+        navigate("/", { replace: true });
       }
     });
     return (

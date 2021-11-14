@@ -31,7 +31,7 @@ const LoginPage = (props) => {
       setDisabled(false);
     }
     if (authUser) {
-      navigate("/", { replace: true });
+      navigate("/home", { replace: true });
     }
   }, [selectUser, authUser, navigate]);
 

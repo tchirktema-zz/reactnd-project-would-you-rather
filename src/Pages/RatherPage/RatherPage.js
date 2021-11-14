@@ -10,6 +10,7 @@ const RatherPage = (props) => {
     const { user} = props;
     let params = useParams();
     return (
+      
       <Fragment>
         <Grid padded="vertically" columns={1} centered>
           <GridRow>

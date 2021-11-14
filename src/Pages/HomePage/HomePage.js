@@ -11,7 +11,7 @@ const HomePage = (props) => {
     useEffect(() => {
       console.info("auther :", authUser)
         if(authUser === null){
-            navigate("/login",{replace: true})
+            navigate("/",{replace: true})
         }
     })
     return (

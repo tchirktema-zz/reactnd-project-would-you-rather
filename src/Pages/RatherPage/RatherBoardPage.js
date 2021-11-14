@@ -42,7 +42,7 @@ const panes = (props) => {
       menuItem: "Unanswered",
       render: () => (
         <Tab.Pane attached={false}>
-          {props.answered.map((question) => (
+          {props.unanswered.map((question) => (
             <UserCard
               key={question.id}
               question_id={question.id}
@@ -56,7 +56,7 @@ const panes = (props) => {
       menuItem: "Answered",
       render: () => (
         <Tab.Pane attached={false}>
-          {props.unanswered.map((question) => (
+          {props.answered.map((question) => (
             <UserCard
               key={question.id}
               question_id={question.id}
@@ -76,15 +76,17 @@ function mapStateToProps({ authUser, questions, users }) {
   if(authUser){
     const user = users[authUser]
     const answeredIds = Object.keys(users[authUser].answers);
-
+    console.log(answeredIds)
     const answered = Object.values(questions)
-      .filter((question) => !answeredIds.includes(question.id))
-      .sort((a, b) => b.timestamp - a.timestamp);
-
-
-    const unanswered = Object.values(questions)
       .filter((question) => answeredIds.includes(question.id))
       .sort((a, b) => b.timestamp - a.timestamp);
+
+    console.log(answered);
+    const unanswered = Object.values(questions)
+      .filter((question) => !answeredIds.includes(question.id))
+      .sort((a, b) => b.timestamp - a.timestamp);
+    
+    console.log(unanswered);
 
     return {
       authUser,
