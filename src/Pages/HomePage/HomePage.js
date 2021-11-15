@@ -9,7 +9,6 @@ const HomePage = (props) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-      console.info("auther :", authUser)
         if(authUser === null){
             navigate("/",{replace: true})
         }

@@ -111,8 +111,7 @@ function mapStateToProps(
 
     author  = users[authUser];
 
-    console.info(" question :", question)
-    console.info(" author :", author);
+   
     
 
 
