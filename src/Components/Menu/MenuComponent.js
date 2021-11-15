@@ -12,7 +12,7 @@ const MenuComponent = (props) => {
   const handleLogout = (e) => {
     e.preventDefault()
     logoutUser();
-    navigate("/login",{replace: true})
+    navigate("/",{replace: true})
   }
 
   useEffect(() => {

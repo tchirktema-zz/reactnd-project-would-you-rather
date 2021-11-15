@@ -16,7 +16,7 @@ const NewRatherPage = (props) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-      if (!authUser) {
+      if (user === undefined) {
         navigate("/", { replace: true });
       }
     });
@@ -54,7 +54,7 @@ const NewRatherPage = (props) => {
         <Grid padded="vertically" columns={1} centered>
           <GridRow>
             <GridColumn style={{ maxWidth: 1000 }}>
-              <MenuComponent user={user} />
+              {user !== undefined ? <MenuComponent user={user} /> : <div></div>}
               <Fragment>
                 {authUser !== null ? (
                   <Grid padded="vertically" columns={1} centered>
