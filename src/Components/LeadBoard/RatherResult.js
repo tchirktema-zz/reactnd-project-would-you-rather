@@ -22,7 +22,7 @@ const RatherResult = (props) => {
   }
 
   const handleClick = (e) => {
-    navigate("/",{replace: true})
+    navigate("/home",{replace: true})
   }
 
   return (

@@ -12,7 +12,11 @@ const LeaderPage = (props) => {
 
     useEffect(() => {
       if (user === undefined) {
-        navigate("/", { replace: true });
+        navigate("/", {
+          state: {
+            current: "/leaderboard",
+          },
+        });
       }
     });
     return (

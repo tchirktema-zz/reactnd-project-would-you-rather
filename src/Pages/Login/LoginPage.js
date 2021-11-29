@@ -16,7 +16,7 @@ import {
 
 import { connect } from "react-redux";
 import { setAuthUser } from "../../Actions/AuthUserActions";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const LoginPage = (props) => {
   const [loading, setLoading] = useState(false)
@@ -25,15 +25,20 @@ const LoginPage = (props) => {
   const navigate = useNavigate();
   
   const { users, authUser } = props;
+  const { state } = useLocation();
 
   useEffect(() => {
     if (selectUser) {
       setDisabled(false);
     }
     if (authUser) {
-      navigate("/home", { replace: true });
+      if (state?.current === null) {
+        navigate("/home", { replace: true });
+      } else {
+        navigate(state?.current || "/home", { replace: true });
+      } 
     }
-  }, [selectUser, authUser, navigate]);
+  }, [selectUser, authUser, navigate, state]);
 
   
   const generateFormDropdown = () => {

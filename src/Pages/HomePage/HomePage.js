@@ -10,7 +10,11 @@ const HomePage = (props) => {
 
     useEffect(() => {
         if(authUser === null){
-            navigate("/",{replace: true})
+          navigate("/", {
+            state: {
+              current: "/home",
+            },
+          });
         }
     })
     return (

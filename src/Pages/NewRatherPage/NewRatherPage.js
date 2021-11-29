@@ -17,7 +17,11 @@ const NewRatherPage = (props) => {
 
     useEffect(() => {
       if (user === undefined) {
-        navigate("/", { replace: true });
+        navigate("/", {
+          state: {
+            current: '/add',
+          },
+        });
       }
     });
 

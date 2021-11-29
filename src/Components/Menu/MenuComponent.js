@@ -29,41 +29,43 @@ const MenuComponent = (props) => {
 
   return (
     <div>
-      <Menu pointing>
-        <Menu.Item name="home" active={activeItem === "home"}>
-          <Link to="/home">Home</Link>
-        </Menu.Item>
-        <Menu.Item name="new" active={activeItem === "new"}>
-          <Link to="/add">Add Rather</Link>
-        </Menu.Item>
-        <Menu.Item name="leader" active={activeItem === "leader"}>
-          <Link to="/leaderboard">Leader Rather</Link>
-        </Menu.Item>
-        <Menu.Menu position="right">
-          <Menu.Item>
-            <Image
-              style={{ width: "30px", height: "auto" }}
-              src={user.avatarURL}
-              circular
-              verticalAlign="middle"
-            />
+      {user && (
+        <Menu pointing>
+          <Menu.Item name="home" active={activeItem === "home"}>
+            <Link to="/home">Home</Link>
           </Menu.Item>
-          <Menu.Item>
-            <Button as="div" labelPosition="right">
-              <Button color="red">{user.name}</Button>
-              <Label
-                as="a"
-                basic
-                color="red"
-                pointing="left"
-                onClick={handleLogout}
-              >
-                Logout
-              </Label>
-            </Button>
+          <Menu.Item name="new" active={activeItem === "new"}>
+            <Link to="/add">Add Rather</Link>
           </Menu.Item>
-        </Menu.Menu>
-      </Menu>
+          <Menu.Item name="leader" active={activeItem === "leader"}>
+            <Link to="/leaderboard">Leader Rather</Link>
+          </Menu.Item>
+          <Menu.Menu position="right">
+            <Menu.Item>
+              <Image
+                style={{ width: "30px", height: "auto" }}
+                src={user.avatarURL}
+                circular
+                verticalAlign="middle"
+              />
+            </Menu.Item>
+            <Menu.Item>
+              <Button as="div" labelPosition="right">
+                <Button color="red">{user.name}</Button>
+                <Label
+                  as="a"
+                  basic
+                  color="red"
+                  pointing="left"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Label>
+              </Button>
+            </Menu.Item>
+          </Menu.Menu>
+        </Menu>
+      )}
     </div>
   );
 

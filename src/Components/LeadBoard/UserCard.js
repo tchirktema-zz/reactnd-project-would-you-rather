@@ -1,27 +1,50 @@
-import React, { Component} from 'react';
+import React, { Fragment, useEffect } from "react";
 import {connect} from 'react-redux';
 import { Grid, Header, Image, Segment } from 'semantic-ui-react';
 import RatherAll from "./RatherAll";
 import RatherQuestion from "./RatherQuestion";
 import RatherResult from "./RatherResult";
+import { useNavigate } from "react-router";
+import NotFoundPage from "../../Pages/Notfound/NotFoundPage";
+const  UserCard = (props) => {
+  const navigate = useNavigate();
+  const {
+    author,
+    question,
+    ratherType,
+    unanswered = null,
+    invalid_question
+  } = props;
 
 
-class UserCard extends Component {
+  const tabColor = unanswered === true ? colors.green : colors.blue;
+  const borderTop =
+    unanswered === null
+      ? `1px solid ${colors.grey}`
+      : `2px solid ${tabColor.hex}`;
   
-  render() {
-    const {
-      author,
-      question,
-      ratherType,
-      unanswered = null,
-    } = this.props;
-    const tabColor = unanswered === true ? colors.green : colors.blue;
-    const borderTop =
-      unanswered === null
-        ? `1px solid ${colors.grey}`
-        : `2px solid ${tabColor.hex}`;
+  useEffect(() => {
+    console.log(props)
+   
 
-    return (
+    if (question === undefined) {
+      navigate("/home", { replace: true });
+    } else {
+      if (author === undefined) {
+        navigate("/", {
+          state: {
+            current: `/questions/${question.id}`,
+          },
+        });
+      }
+    }
+
+    
+  });
+  
+  return (
+    <Fragment>
+      { invalid_question === false ? (
       <Segment.Group>
         <Header
           as="h5"
@@ -32,7 +55,6 @@ class UserCard extends Component {
         >
           {question.author} asks:
         </Header>
-
         <Grid divided padded>
           <Grid.Row>
             <Grid.Column width={5}>
@@ -53,8 +75,9 @@ class UserCard extends Component {
           </Grid.Row>
         </Grid>
       </Segment.Group>
-    );
-  }
+      ) : (<NotFoundPage/>) }
+    </Fragment>
+  );
 }
 
 export const colors = {
@@ -99,7 +122,7 @@ function mapStateToProps(
   { users, questions, authUser },
   { match, question_id }
 ){
-  let question, author, ratherType;
+  let question, author, ratherType,invalid_question = false;
 
   if(question_id){
     question = questions[question_id];
@@ -111,12 +134,8 @@ function mapStateToProps(
 
     author  = users[authUser];
 
-   
-    
-
-
     if (question === undefined) {
-
+      invalid_question = true;
     } else {
       author = users[authUser];
       ratherType = ratherTypes.RATHER_QUESTION;
@@ -130,6 +149,7 @@ function mapStateToProps(
     question,
     author,
     ratherType,
+    invalid_question
   };
 };
 export default connect(mapStateToProps)(UserCard); 
