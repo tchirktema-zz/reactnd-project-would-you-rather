@@ -28,7 +28,11 @@ const  UserCard = (props) => {
    
 
     if (question === undefined) {
-      navigate("/home", { replace: true });
+      navigate("/", {
+        state: {
+          current:"/notfound",
+        },
+      });
     } else {
       if (author === undefined) {
         navigate("/", {

@@ -7,6 +7,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import RatherPage from "../RatherPage/RatherPage";
 import NewRatherPage from "../NewRatherPage/NewRatherPage";
 import LeaderPage from "../RatherPage/LeaderPage";
+import NotFoundPage from "../Notfound/NotFoundPage";
 
 class AppPage extends Component {
   componentDidMount(){
@@ -27,6 +28,7 @@ class AppPage extends Component {
           <Route path="/questions/:question_id" element={<RatherPage />} />
           <Route path="/add" element={<NewRatherPage />} />
           <Route path="/leaderboard" element={<LeaderPage />} />
+          <Route path="/notfound" element={<NotFoundPage />} />
         </Routes>
       </Fragment>
     );
